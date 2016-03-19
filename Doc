@@ -1,0 +1,5 @@
+-- Hive DDL (Data Definition Language) + DML (Data Manipulation Language)
+
+Create Database [If not exsit] DB;
+Show Databases;
+Create Table test 1 (f1 string);
