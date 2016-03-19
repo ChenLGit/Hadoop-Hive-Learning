@@ -1,6 +1,4 @@
 CREATE TABLE max_diff AS SELECT (high-low) FROM stocks
 
-
-
-
-SELECT vol
+-- select certain data by various clause (WHERE, ORDER BY, LIMIT)
+SELECT * FROM daily WHERE symbol=='CVA'and (close-open)>0 ORDER BY volume DESC LIMIT 100;
