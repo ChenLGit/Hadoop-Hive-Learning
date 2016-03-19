@@ -1,0 +1,6 @@
+--
+set hive.exec.reducers.bytes.per.reducer=<number>
+--
+set hive.exec.....
+-- 
+set hive.....
