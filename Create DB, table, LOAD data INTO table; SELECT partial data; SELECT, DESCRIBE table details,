@@ -19,6 +19,8 @@ LOAD DATA [LOCAL] INPATH '/home/training/Desktop/BigData/NYSE_daily.txt' [OVERWR
 
 -- Show all the data in the table
 SELECT * FROM daily; 
+-- table Alias helps when you want to merge, join different tables
+SELECT d.symbol, e.close FROM  daily d;
 
 -- Check table information
 describe daily;
