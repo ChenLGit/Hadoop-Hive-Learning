@@ -1,1 +1,6 @@
 CREATE TABLE max_diff AS SELECT (high-low) FROM stocks
+
+
+
+
+SELECT vol
