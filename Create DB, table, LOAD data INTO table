@@ -1,0 +1,26 @@
+CREATE DATABASE IF NOT EXISTS stock;
+CREATE TABLE IF NOT EXISTS daily(exchanges string, 
+symbol string, 
+ymd string, 
+open float, 
+high float, 
+low float, 
+close float, 
+volume bigint, 
+adj_close float)
+ROW FORMAT DELIMITED
+FIELDS terminated by '\t'
+COLLECTION ITEMS TERMINATED BY '\002'
+MAP KEYS TERMINATED BY '\003'
+LINES TERMINATED BY '\n';
+
+-- LOAD data INTO table
+LOAD DATA [LOCAL] INPATH '/home/training/Desktop/BigData/NYSE_daily.txt' [OVERWRITE] INTO TABLE daily;
+
+-- Show all the data in the table
+SELECT * FROM daily; 
+
+-- Check table information
+describe daily;
+-- Check more details table information
+describe extended daily;
