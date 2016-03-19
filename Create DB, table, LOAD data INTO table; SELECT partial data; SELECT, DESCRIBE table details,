@@ -24,3 +24,7 @@ SELECT * FROM daily;
 describe daily;
 -- Check more details table information
 describe extended daily;
+
+-- CREATE new_table AS SELECT columns FROM old_table
+CREATE TABLE close_price AS SELECT symbol, close FROM daily;
+SHOW TABLES;
