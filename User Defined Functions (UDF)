@@ -21,3 +21,29 @@ Dump B;
 • Optionally use the DEFINE feature to provide alias for the function you want to use
 DEFINE UPPER org.apache.pig.piggybank.evaluation.string.UPPER
 B= FOREACH A GENERATE.UPPER(name)
+
+Python UDF
+‐‐ test.py file
+#!/usr/bin/python
+@outputSchema("word:chararray")
+def helloworld():
+  return 'Hello, World'
+@outputSchema("word:chararray,num:long")
+def complex(word):
+  return str(word),len(word)
+@outputSchemaFunction("square:double")
+def square(num):
+  return ((num)*(num))
+@outputSchema(“num:long”)
+define get_length(data)
+  str_data = ‘’.join([chr(x) for x in data])
+  return len(str_data)
+
+Python UDF
+• Use the REGISTER feature in Pig.
+• Pig identifies jython as a keyword and ships the required script engine (jython) to interpret it.
+REGISTER ‘path/python.py’ using jython as myfuncs;
+txt = LOAD ‘word_count.txt’ AS (line:chararray);
+words = FOREACH txt GENERATE FLATTEN(TOKENIZE(ling)) as word;
+result = FOREACH words GENERATE myfuncs.get_length($0);
+‐‐ return the length of each word
