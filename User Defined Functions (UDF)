@@ -1,2 +1,23 @@
 -- You can defined your own function by using Java. But it is generally hard to do.
 -- You can also use other people's predefined UDF
+
+Available UDF Libraries
+• Piggybank by Hadoop Team at Yahoo!
+– Written in Java
+– http://pig.apache.org/docs/r0.7.0/api/overviewsummary.html
+– Use the piggybank.jar file
+– Contains function such as IsDouble, Reverse etc.
+• Datafu by LinkedIn
+– Written in Java
+– Contains functions such as PageRank, Set operations etc.
+
+How to use UDF
+• Use the REGISTER feature in Pig to register the jar file 
+(piggybank.jar or any jar files you create)
+REGISTER ‘path/piggybank.jar’
+A = LOAD ‘student_data’ AS (name:charray, age:int, gpa: float)
+B = FOREACH A GENERATE org.apache.pig.piggybank.evaluation.string.UPPER(name)
+Dump B;
+• Optionally use the DEFINE feature to provide alias for the function you want to use
+DEFINE UPPER org.apache.pig.piggybank.evaluation.string.UPPER
+B= FOREACH A GENERATE.UPPER(name)
