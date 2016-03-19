@@ -1,0 +1,10 @@
+-- Relational Operators --
+-- A<=>B is the only one comparing the NULL too. Ex. Null <=> Null is TRUE
+
+-- A = B doesn't compare NULL. A = Null is Null
+
+-- Arithmetic Operators --
+-- A^B  ex. 0000001 ^ 0000011 is 0000010 
+
+-- Logical Operators --
+CREATE TABLE max_daily_diff AS SELECT FROM stock 

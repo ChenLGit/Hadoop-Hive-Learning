@@ -1,3 +1,0 @@
--- CREATE new_table AS SELECT columns FROM old_table
-CREATE TABLE close_price AS SELECT symbol, close FROM daily;
-SHOW TABLES;
