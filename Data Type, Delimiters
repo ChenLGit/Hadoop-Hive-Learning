@@ -1,0 +1,62 @@
+------ Primitive Data Type ------
+TYPE               Size                                                                                               Literal Syntax Examples
+TINYINT            1 byte signed integer                                                                              20
+SMALLINT           2 byte signed integer                                                                              20
+INT                4 byte signed integer                                                                              20
+BIGINT             8 byte signed integer                                                                              20
+BOOLEAN            Boolean true or false                                                                              TRUE
+FLOAT              Single precision floating point                                                                    3.14159
+DOUBLE             Double precision floating point                                                                    3.14159
+STRING             Sequence of characters. The character set can be specified. Single or double quotes can be used    ‘Now is the time’, “for all good man”
+TIMESTAMP (v0.8+)  Integer, float or string                                                                           1327882394 (unix epoch seconds) ‘2012‐02‐03 12:34:56.12345678’ (JDBC‐compliant java.sql.Timestamp format)
+
+------ Complex Data Type ------
+--- STRUCT --- 
+Description: 
+Analogous to a C struct of an “object”. Fields can be accessed
+using the “dot” notation. For example, if a column name is of type
+STRUCT{first STRING; last STRING}, then the first name field can
+be referenced using name.first
+
+Literal Syntax Examples: 
+struct(‘JOHN’,’DOE’)
+
+--- MAP ---
+Description:
+A collection of key‐value tuples, where the fields are accessed
+using array notation (e.g., [“key”]). For example, if a column name
+is type MAP with key ‐> value pairs ‘first’ ‐>’John’ and ‘last’‐
+>’Doe’, then the last name can be referenced using name[‘last’]
+
+Literal Syntax Examples: 
+map(‘first’ ,’John’, ’last’, ’Doe’)
+
+--- ARRAY --- 
+Description:
+Ordered sequences of the same type that are indexable using
+zero‐based integers. For example, if a column name is of type
+ARRAY of strings with the value [‘John’, ‘Doe’], then the second
+element can be referenced using name[1]
+
+Literal Syntax Examples: 
+array(‘John’,’Doe’)
+
+------ Delimiter ------
+--- \n ---
+Description: 
+For text files, each line is a record, so the line feed character separates records.
+
+--- ^A (“control” A) ---
+Description: 
+Separates all fields(columns), written using the octal code \001 
+when explicitly specified in CREATE TABLE statements
+
+--- ^B --- 
+Description: 
+Separates all elements in ARRAY or STRUCT, or the keyvalue pairs in a MAP. Written using the octal code \002 
+when explicitly specified in CREATE TABLE statements
+
+--- ^C --- 
+Description:
+Separates the key from the corresponding value in MAP key‐value pairs. Written using the octal code \003 
+when explicitly specified in CREATE TABLE statements
