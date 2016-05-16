@@ -1,0 +1,25 @@
+------ Read Data ------
+Syntax:
+LOAD DATA [LOCAL] INPATH ‘path/file’
+[OVERWRITE] INTO TABLE daily;
+
+-- Use LOAD to load data from a file or directory.
+-- When we use LOCAL, the data is copied. Otherwise, the data is moved.
+-- Append data to the table unless OVERWRITE used;
+
+Example:
+CREATE database IF NOT EXISTS test;
+Use test;
+CREATE table IF NOT EXISTS daily(
+exchange string,
+symbol string,
+ymd string,
+open float,
+high float,
+low float,
+close float,
+volume bigint,
+adj_close float
+)
+LOAD DATA LOCAL INPATH ‘path/file’
+OVERWRITE INTO TABLE daily;
