@@ -1,0 +1,7 @@
+--- Invoke the Hive shell from the command line by typing (interactive environment)
+$ hive
+--- Then enter the hive environment
+hive >
+--- Execute by shell script in command line
+$ hive ‐f hive_file.q
+
