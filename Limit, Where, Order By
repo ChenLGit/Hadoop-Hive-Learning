@@ -1,0 +1,51 @@
+------ Limit ------
+Without Limit clause, the typical query will return a large number of rows. It will put an upper limit of rows returned.
+- Syntax:
+  SELECT expr, expr, … FROM tablename; 
+  LIMIT n
+
+- Example:
+  hive> SELECT name, salary, FROM employees
+  LIMIT 2;
+
+  John Doe 100000.0
+  Mary Smith 80000.0
+
+
+------ Where ------
+While SELECT clauses select columns, WHERE clauses are filters; they select which records to return.
+- Syntax:
+  SELECT expr, expr, … FROM tablename; 
+  WHERE condition
+
+- Example:
+  hive> SELECT name, salary, FROM employees
+  WHERE salary >= 100000
+
+  John Doe 100000.0
+  Boss Man 200000.0
+  Fred Finance 150000.0
+
+
+------ Order By ------
+Order by performs a total ordering of the query result set. This means that all the data is passed through a single reducer
+- Syntax:
+  SELECT expr, expr, … FROM tablename;
+  ORDER BY expr
+- Example:
+  hive> SELECT name, salary, FROM employees
+  ORDER BY salary
+  
+-*-*-*- All SELECT related Syntax -*-*-*- 
+Syntax:
+SELECT expr, expr, … FROM tablename
+WHERE condition
+ORDER BY expr
+Limit n
+
+- Conditions can be any Boolean expression
+  –country=‘USA’ AND (OR) income>30,000
+- Can sort in descending order with ORDER BY expr DESC
+- Limit can show the output to the first n rows
+
+
