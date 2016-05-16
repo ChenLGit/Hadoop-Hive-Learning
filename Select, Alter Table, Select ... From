@@ -1,0 +1,54 @@
+------ Select ------
+Hive supports creating a table based on SELECT statement
+-- Syntax:
+    CREATE TABLE new_table
+    AS
+    SELECT field1, field2 FROM old_table
+The column names and definition are inherited from the old_table
+
+Practice:
+CREATE TABLE max_diff AS SELECT (high-low) FROM stocks
+
+-- select certain data by various clause (WHERE, ORDER BY, LIMIT)
+SELECT * FROM daily WHERE symbol=='CVA'and (close-open)>0 ORDER BY volume DESC LIMIT 100;
+
+------ Alter Table ------
+Hive’s ALTER TABLE statement provides multiple ways
+to change the structure of existing tables
+– Rename a table/modify properties
+– Modify Columns
+– Change a table’s locations
+– Add and remove partitions
+
+Example:
+ALTER TABLE t RENAME to x;
+ALTER TABLE t ADD COLUMNS (col_name, type)
+ALTER TABLE t SET LOCATION “new_location”
+ALTER TABLE t ADD PARTITION (date=‘2014‐03‐05’)
+location ‘/path/2014‐03‐05'
+
+------ Select ... From ------
+Syntax:
+SELECT expr, expr, … FROM tablename;
+Example:
+hive> SELECT name, salary FROM employees;
+
+John Doe 100000.0
+Mary Smith 80000.0
+…
+
+------ Table alias ------ 
+The following two queries are identical. The second version uses a table alias e, which is not very useful in
+this query, but becomes necessary in queries with JOINs.
+
+hive> SELECT name, salary FROM employees;
+
+hive> SELECT e.name, e.salary FROM employees e;
+
+------ Specify columns with regular expression ------
+hive> SELECT symbol, ‘price.*’ FROM stocks;
+
+AAPL 195.69 197.88 194.0 194.12 194.12
+AAPL 192.63 196.0 190.85 195.46 195.46
+AAPL 195.91 196.32 193.38 195.86 195.86
+...
