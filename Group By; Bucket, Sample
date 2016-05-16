@@ -1,0 +1,34 @@
+------ Group By ------
+GROUP BY is often used with aggregate function to group the result set with one or more columns;
+Syntax:
+SELECT year(ymd), avg(close) FROM daily
+WHERE exchange=="NYSE" AND symbol=="CVA"
+GROUP BY year(ymd);
+
+------ Bucket ------
+- Bucketing data is similar to partitioning data
+- Data is split into buckets based on the hash value of a column of the incoming data
+- Intend to produce an even distribution of rows across n buckets
+- Useful for jobs which need to ‘sample’ data from the table
+– Jobs which just work on a ‘random’ portion of the data
+Syntax:
+CREATE TABLE tablename (col_spec);
+CLUSTERED BY (col) INTO n BUCKETS
+Note: since a hash will be taken of the col column value for each row to determine the destination bucket, that column should contain well‐distributed values
+
+
+------ Sampleing ------
+--- Sampling from bucketed table ---
+Syntax: 
+SELECT * FROM bucketed_table
+TABLESAMPLE (bucket 1 OUT OF 4 on col)
+- If the table was bucketed into four buckets on col, this would choose just the rows in bucket1; if 16 buckets, this would choose buckets 1,5,9,13
+
+--- Sampling by full scan of the entire table ---
+Syntax:
+SELECT * FROM table_name TABLESAMPLE(0.1
+PERCENT) ;
+
+
+
+
