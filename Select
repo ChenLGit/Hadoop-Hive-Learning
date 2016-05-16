@@ -1,3 +1,12 @@
+------ Select ------
+Hive supports creating a table based on SELECT statement
+-- Syntax:
+    CREATE TABLE new_table
+    AS
+    SELECT field1, field2 FROM old_table
+The column names and definition are inherited from the old_table
+
+Practice:
 CREATE TABLE max_diff AS SELECT (high-low) FROM stocks
 
 -- select certain data by various clause (WHERE, ORDER BY, LIMIT)
