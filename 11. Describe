@@ -1,0 +1,5 @@
+-- To see the columns in a table, use:
+DESCRIBE table;
+
+-- For more detailed information:
+DESCRIBE EXTENDED table;

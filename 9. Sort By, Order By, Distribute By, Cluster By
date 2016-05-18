@@ -1,0 +1,33 @@
+------ Sort By ------
+HiveQL supports the SORT BY expression
+– Sorts the rows before feeding to a reducer
+– Sort order is dependent upon the column type (numeric then numeric order, string is lexicographical order)
+
+Syntax:
+SELECT expr, expr, … FROM tablename;
+WHERE condition
+SORT BY expr
+
+SORT BY
+– May use multiple reducers for final output
+– Sorts data within each reducer
+– Only guarantees ordering of rows within each reducer
+– Only have partially ordered results
+
+Order BY
+– Single reducer to guarantee global order in output
+– Large dataset may take a long time to sort
+- Use LIMIT to minimize the time
+
+DISTRIBUTE BY
+– Distributes the rows among reducers
+– Not guarantee clustering or sorting properties
+Example
+– SELECT species from table pet DISTRIBUTE BY species
+
+CLUSTER BY
+– Combination of DISTRIBUTE BY and SORT BY
+– Rows with the same key are distributed to the same reducer
+– Sorted within each reducer
+Example
+– SELECT species from table pet CLUSTER BY species

@@ -1,0 +1,19 @@
+------ Read Data to tables with partition ------
+Syntax:
+LOAD DATA LOCAL INPATH ‘path/file’
+OVERWRITE INTO TABLE daily;
+PARTITIONED BY (field1 STRING, field2 STRING,…);
+
+- Partition allows hive to filter at the input path level and never read non‐matching data
+- Increase the efficiency when executing the query only a subset of the data needs.
+- Second partition will be a subdirectory of the first partition’s directory
+
+------ Dropping/Adding Partitions ------
+Hive’s ALTER TABLE statement provides the
+ability to drop or add a partition
+
+--- Adding partition ---
+ALTER TABLE employees ADD PARTITION (country =‘US’, state=‘test’ ) location ‘…/employees/US/test’
+
+--- Removing partition ---
+ALTER TABLE employees DROP PARTITION (country =‘US’, state=‘test’ )

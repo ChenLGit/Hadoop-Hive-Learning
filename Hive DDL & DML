@@ -1,0 +1,16 @@
+------ Hive DDL(Data Definition Language) & DML(Data Manipulation Language) ------
+
+DDL(Data Definition Language)                 DML(Data Manipulation Language)
+
+• Create/Drop/Alter Database                  • Load
+• Create/Drop/Alter Table                     • Insert
+• Alter Table/Partition/Column                • Update
+• Create/Drop/Alter View                      • Delete
+• Show                                        • Group By
+• Describe                                    • Sort By
+
+
+
+
+
+

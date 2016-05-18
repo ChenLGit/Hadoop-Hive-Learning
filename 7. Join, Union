@@ -1,0 +1,64 @@
+------ Join ------ 
+A frequent requirement is to join two (or more) tables together
+Syntax:
+SELECT field1, field2 … FROM table1 JOIN t2 on (condition)
+JOIN t3 on (condition);
+
+--- Inner joins --- 
+- Example
+hive > SELECT a.ymd, a.price_close, b.price_close
+     > FROM stocks a JOIN stocks b ON a.ymd = b.ymd
+     >WHERE a.symbol = 'AAPL' AND b.symbol = 'IBM';
+
+    2010‐01‐04 214.01 132.45
+    2010‐01‐05 214.38 130.85
+    ...
+
+--- Left outer joins, right outer joins, Full outer joins --- 
+- Example
+hive> SELECT s.ymd, s.symbol, s.price_close, d.dividend
+    > FROM stocks s LEFT(RIGHT/FULL) OUTER JOIN dividends d ON s.ymd = d.ymd AND s.symbol = d.symbol
+    > WHERE s.symbol = 'AAPL'
+    > AND s.exchange = 'NASDAQ' AND d.exchange = 'NASDAQ';
+    1987‐05‐11 AAPL 77.0 0.015
+    1987‐08‐10 AAPL 48.25 0.015
+    ...
+
+--- left semi joins --- 
+- returns rows from the first table that have at least one employee in second table
+  Select a,key, a.val
+  From a LEFT SEMI JOIN b ON (a.key = b.key)
+  *** is the same as ***
+  SELECT a,key, a.val
+  FROM a
+  WHERE a.key in (SEKECT b.key FROM b)
+
+
+------ Union ------
+-- If variables are not matching in two dataset, the UNION function will return an error
+-- Hive supports UNION and UNION ALL now
+  – Before Hive 1.2.0, Only UNION ALL is supported
+  – Combine the result from multiple SELECT statements into a single result set
+  – The number and names of columns returned by each select_statement has to be the same
+Syntax:
+select_statement UNION (ALL) select_statement 
+UNION (ALL) select_statement …
+
+
+
+
+
+
+-- https://cwiki.apache.org/confluence/display/Hive/LanguageManual+GroupBy
+-- Count the unique stock number
+SELECT count(DISTINCT symbol) FROM daily;
+
+-- Find each stock's average close price per year
+SELECT low(symbol), year(ymd), avg(close) FROM daily 
+WHERE 
+Group by symbol, year(ymd);
+
+-- Find average close price per year
+SELECT year(ymd), avg(close) FROM daily 
+WHERE 
+Group by year(ymd);

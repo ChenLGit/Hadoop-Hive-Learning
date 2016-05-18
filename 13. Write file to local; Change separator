@@ -1,0 +1,7 @@
+INSERT OVERWRITE LOCAL DIRECTORY '/home/training/Desktop/BigData/Output/'
+SELECT * FROM daily WHERE symbol=='CVA'and (close-open)>0 ORDER BY volume DESC LIMIT 100;
+
+-- Doesn't work due to miss space
+cat /home/training/Desktop/BigData/Output/* | sed's/^A/,/g'>/home/training/Desktop/BigData/Output/CVAtop100volume.csv
+-- Be careful about space and also use real "control A" instead of typin by hand
+cat /home/training/Desktop/BigData/Output/* | sed 's/^A/,/g' > /home/training/Desktop/BigData/Output/CVAtop100volume.csv

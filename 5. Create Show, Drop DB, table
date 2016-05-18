@@ -1,0 +1,17 @@
+CREATE DATABASE test;
+SHOW DATABASES;
+-- Register Database
+USE test; 
+CREATE TABLE test1(f1 string);
+CREATE TABLE test2(f1 string);
+SHOW TABLES;
+-- You cannot drop a database with some tables inside (will get an alert)
+DROP DATABASE test;
+-- You need to drop tables first, then drop database
+DROP table test1;
+DROP table test2;
+-- basically empty database
+SHOW DATABASES;
+-- Successful drop database
+DROP DATABASE test;
+

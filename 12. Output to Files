@@ -1,0 +1,10 @@
+------ Writing output to Files ------ 
+Syntax:
+INSERT OVERWRITE LOCAL
+DIRECTORY ’/tmp/result’
+SELECT … FROM…;
+
+- Use INSERT … DIRECTORY from a query
+- Default query results written to one or more files, delimiter is ‘^A’
+- Appends to the directory unless OVERWRITE is used
+- Writes to the cluster file system unless local is used
